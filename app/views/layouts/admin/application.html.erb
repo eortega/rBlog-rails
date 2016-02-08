@@ -22,9 +22,9 @@
       </div>
       <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><%= link_to "Posts", admin_posts_path %></li>
-          <li ><%= link_to "Categories", admin_categories_path %></li>
-          <li><%= link_to "Users", admin_users_path %></li>
+          <li class="<%= params[:controller]== 'admin/posts' ? 'active' : '' %>"><%= link_to "Posts", admin_posts_path %></li>
+          <li class="<%= params[:controller]== 'admin/categories' ? 'active' : '' %>"><%= link_to "Categories", admin_categories_path %></li>
+          <li class="<%= params[:controller]== 'admin/users' ? 'active' : '' %>"><%= link_to "Users", admin_users_path %></li>
         </ul>
         <form class="navbar-form navbar-right search-form" role="search">
           <div class="form-group">
@@ -41,7 +41,18 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <div class='well'> <%= yield %> </div>
+
+          <div class='well'>
+            <% if flash[:notice] %>
+              <div class="alert alert-success"> <%= flash[:notice] %> </div>
+            <% end %>
+
+            <% if flash[:alert] %>
+              <div class="alert alert-danger"> <%= flash[:alert] %> </div>
+            <% end %>
+
+            <%= yield %>
+          </div> <!-- end well -->
         </div> <!-- end main container -->
     </div>
   </section>
