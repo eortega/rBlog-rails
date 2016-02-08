@@ -1,4 +1,4 @@
-class Admin::CategoriesController < ApplicationController
+class Admin::CategoriesController < Admin::ApplicationController
   def new
   end
 
@@ -15,6 +15,7 @@ class Admin::CategoriesController < ApplicationController
   end
 
   def index
+    @categories = Category.all
   end
 
   def show
