@@ -62,6 +62,11 @@ body{
   border: 1px solid #eee;
 }
 
+.search-form .form-group{
+  display: inline-block;
+  margin-bottom: 0;
+  vertical-align: middle;
+}
 .btn {
   border: none;
   border-radius: 0;

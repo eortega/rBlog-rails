@@ -15,13 +15,13 @@
     <td>
       <%= link_to 'Edit', edit_admin_post_path(post), class: 'btn btn-primary'%>
       <%= link_to "Delete", admin_post_path(post), class: "btn btn-danger", method: :delete, data: {confirm: 'Are you sure'} %>
-    
+
     </td>
   </tr>
   <% end %>
-
-
 </table>
+<%= will_paginate @posts %>
+
 <% else %>
   <p>There are no post</p>
 <% end %>

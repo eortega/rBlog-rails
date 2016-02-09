@@ -1,0 +1,19 @@
+<%
+  case params[:controller]
+  when "admin/posts"
+    @search_url = admin_posts_path
+  when "admin/categories"
+    @search_url = admin_categories_path
+  when "admin/users"
+    @search_url = admin_users_path
+  else
+    @search_url = admin_posts_path
+  end
+  %>
+
+<%= form_tag(@search_url, :method =>'get', id: 'search-form', class: 'navbar-form navbar-right search-form') do %>
+    <div class="form-group">
+      <%= text_field_tag :search, params[:search], placeholder: 'Search', class: 'form-control' %>
+    </div>
+    <%= submit_tag "Search", :name => nil, class: "btn btn-primary"  %>
+<% end %>

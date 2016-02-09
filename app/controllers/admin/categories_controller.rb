@@ -38,7 +38,11 @@ class Admin::CategoriesController < Admin::ApplicationController
   end
 
   def index
-    @categories = Category.all
+    if params[:search]
+      @categories = Category.search(params[:search]).all.order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
+    else
+      @categories = Category.all.order('created_at DESC').paginate(:page => params[:page], :per_page => 10)
+    end
   end
 
 
