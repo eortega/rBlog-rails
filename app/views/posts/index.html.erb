@@ -1,69 +1,23 @@
-<div class="row">
-  <div class="col-md-6">
-    <div class="post">
-      <img src="img/avatar.jpg" />
-      <div class="post-content">
-        <h3> Lorem Ipsum </h3>
-        <small> Posted by eortega On January 28th 2016 </small>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-        </p>
-        <a class='btn btn-primary btn-block'> Read More </a>
+<div id='post-index'>
+  <% if @posts.exists? %>
+    <% @posts.each_slice(2) do |post| %>
+      <div class = 'row'>
+        <% post.each do |post| %>
+          <div class='col-md-6'>
+            <div class='post'>
+              <%= image_tag post.image.url, width: '100%'  %>
+              <div class='post-content'>
+                <h3><%= post.title %></h3>
+                <small>Posted by <%= post.user.name %> on <%= post.created_at.to_time.strftime('%B %e at %l:%M %p') %></small>
+                <%= raw post.body.truncate(200) %>
+                <%= link_to "Read More", post_path(post), class: 'btn btn-primary' %>
+              </div><!--post-content -->
+            </div><!-- post -->
+          </div><!-- col md-6 -->
+        <% end %>
       </div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="post">
-      <img src="img/avatar.jpg" />
-      <div class="post-content">
-        <h3> Lorem Ipsum </h3>
-        <small> Posted by eortega On January 28th 2016 </small>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-        </p>
-        <a class='btn btn-primary btn-block'> Read More </a>
-      </div>
-  </div>
-</div>
-</div> <!-- enc row -->
-
-<div class="row">
-<div class="col-md-6">
-  <div class="post">
-    <img src="img/avatar.jpg" />
-    <div class="post-content">
-      <h3> Lorem Ipsum </h3>
-      <small> Posted by eortega On January 28th 2016 </small>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-      </p>
-      <a class='btn btn-primary btn-block'> Read More </a>
-    </div>
-  </div>
-</div>
-<div class="col-md-6">
-  <div class="post">
-    <img src="img/avatar.jpg" />
-    <div class="post-content">
-      <h3> Lorem Ipsum </h3>
-      <small> Posted by eortega On January 28th 2016 </small>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum
-      </p>
-      <a class='btn btn-primary btn-block'> Read More </a>
-    </div>
-  </div><!--post -->
-</div>
-</div> <!-- enc row -->
+    <% end %>
+  <% else %>
+    <p> No posts yet. </p>
+  <% end %>
+</div><!-- post-index-->
