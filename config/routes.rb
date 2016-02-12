@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   get 'about' => 'about#index'
 
   namespace :admin do
-  get 'sessions/new'
+  get 'login' => 'sessions#new', :as =>'login'
   end
 
   namespace :admin do
