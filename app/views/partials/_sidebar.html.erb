@@ -1,5 +1,5 @@
 <div class='list-group'>
-  <a href='#' class='list-group-item'>News</a>
-  <a href='#' class='list-group-item'>Totorials</a>
-  <a href='#' class='list-group-item'>Releases</a>
+  <% @categories.each do |category| %>
+    <%= link_to category.name, category_path(category.id) , class: 'list-group-item' %>
+  <% end %>
 </div>
